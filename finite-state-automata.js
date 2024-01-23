@@ -105,7 +105,6 @@ class FSA {
       allSt.push(newSt); // pushes newSt to the array
       if (!firstStateDeclared) {curState = newSt; firstStateDeclared = true;} //curState assigned to newState if the first has not yet been declared
       transitions.forEach(tr => {this.addTransition(s, tr);}); //addTransition is called on newState and all transitions in the array
-
       //HELPER: Changes all Destinations within all State Objects to point to new state
       //changeALlDests(oldState: State, newState: State):this
       function changeAllDests(oldState, newState) {
@@ -198,6 +197,20 @@ class FSA {
 }
 
 let d = new FSA();
+
+function test(testName, testToRun) {
+  // Create Output String
+  let testOutputMessage = ""; 
+  try {
+    testToRun(); 
+  } catch (error) {
+    testOutputMessage += testName + ": FAILED\n"; 
+    testOutputMessage += "Error: " + error; 
+  }
+  testOutputMessage += testName + ": SUCCESS\n"; 
+  // Print Output
+  console.log(testOutputMessage)
+}
 
 // can go in any direction with eMoves random
 
